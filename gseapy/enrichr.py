@@ -6,7 +6,6 @@ import sys, json, os, logging
 import requests
 from time import sleep
 from pandas import read_table, DataFrame, Series
-from gseapy.plot import barplot
 from gseapy.parser import get_library_name
 from gseapy.utils import *
 
@@ -140,15 +139,6 @@ class Enrichr(object):
         df =  read_table(outfile)
         self.res2d = df
 
-        # plotting
-        if not self.__no_plot:
-            fig = barplot(df=df, cutoff=self.cutoff,
-                        figsize=self.figsize, top_term=self.__top_term,)
-            if fig is None:
-                self._logger.warning("Warning: No enrich terms using library %s when cuttoff = %s"%(gene_set, self.cutoff))
-            else:
-                fig.savefig(outfile.replace("txt", self.format),
-                            bbox_inches='tight', dpi=300)
         self._logger.info('Done.\n')
         return
 
