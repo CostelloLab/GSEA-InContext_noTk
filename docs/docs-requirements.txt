@@ -1,7 +1,0 @@
-ipython
-ipykernel
-cython
-pyyaml
-sphinx>=1.4
-nbsphinx
-sphinx_rtd_theme
