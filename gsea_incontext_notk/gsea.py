@@ -11,10 +11,10 @@ import numpy as np
 import pandas as pd
 from numpy import log, exp
 
-from gseapy.algorithm import enrichment_score, enrichment_score_incontext, gsea_compute, ranking_metric
-from gseapy.algorithm import enrichment_score_tensor, gsea_compute_tensor
-from gseapy.parser import *
-from gseapy.utils import mkdirs, log_init, retry, DEFAULT_LIBRARY
+from gsea_incontext_notk.algorithm import enrichment_score, enrichment_score_incontext, gsea_compute, ranking_metric
+from gsea_incontext_notk.algorithm import enrichment_score_tensor, gsea_compute_tensor
+from gsea_incontext_notk.parser import *
+from gsea_incontext_notk.utils import mkdirs, log_init, retry, DEFAULT_LIBRARY
 
 
 class GSEAbase(object):

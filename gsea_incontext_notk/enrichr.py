@@ -6,8 +6,8 @@ import sys, json, os, logging
 import requests
 from time import sleep
 from pandas import read_table, DataFrame, Series
-from gseapy.parser import get_library_name
-from gseapy.utils import *
+from gsea_incontext_notk.parser import get_library_name
+from gsea_incontext_notk.utils import *
 
 
 class Enrichr(object):

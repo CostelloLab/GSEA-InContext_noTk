@@ -5,7 +5,7 @@ import requests
 
 from numpy import in1d
 from pandas import read_table, DataFrame
-from gseapy.utils import unique, DEFAULT_LIBRARY
+from gsea_incontext_notk.utils import unique, DEFAULT_LIBRARY
 from requests.packages.urllib3.util.retry import Retry
 from requests.adapters import HTTPAdapter
 

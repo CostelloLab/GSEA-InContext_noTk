@@ -5,7 +5,7 @@ from setuptools.command.test import test as TestCommand
 
 
 
-__version__='0.9.3'
+__version__='0.1.0'
 
 if sys.argv[-1] == 'publish':
     os.system("python setup.py sdist bdist_wheel register upload")
@@ -26,16 +26,13 @@ class PyTest(TestCommand):
         errno = pytest.main(self.test_args)
         sys.exit(errno)
 
-
-
-
 def readme():
     with open('README.rst') as f:
         return f.read()
 
-setup(name='gseapy',
+setup(name='gsea_incontext_notk',
       version=__version__,
-      description='Gene Set Enrichment Analysis in Python',
+      description='Gene Set Enrichment Analysis In Context',
       long_description=readme(),
       classifiers=[
           'Development Status :: 4 - Beta',
@@ -50,7 +47,7 @@ setup(name='gseapy',
           'Topic :: Software Development :: Libraries'],
       keywords= ['Gene Ontology', 'GO','Biology', 'Enrichment',
           'Bioinformatics', 'Computational Biology',],
-      url='https://github.com/BioNinja/gseapy',
+      url='https://github.com/CostelloLab/GSEA-InContext_noTk',
       author='Zhuoqing Fang',
       author_email='fangzhuoqing@sibs.ac.cn',
       license='MIT',
@@ -58,15 +55,13 @@ setup(name='gseapy',
       install_requires=[
           'numpy>=1.13.0',
           'pandas>=0.16',
-          'matplotlib>=1.4.3',
           'beautifulsoup4>=4.4.1',
           'requests',
-          'lxml',
-          'html5lib',],
-      entry_points={'console_scripts': ['gseapy = gseapy.__main__:main'],},
+          'scipy',],
+      entry_points={'console_scripts': ['gsea_incontext_notk = gsea_incontext_notk.__main__:main'],},
       tests_require=['pytest'],
       cmdclass = {'test': PyTest},
       zip_safe=False,
-      download_url='https://github.com/BioNinja/gseapy',)
+      download_url='https://github.com/CostelloLab/GSEA-InContext_noTk',)
 
-__author__ = 'Zhuoqing Fang'
+__author__ = 'Rani Powers (original GSEApy implementation by Zhuoqing Fang)'
