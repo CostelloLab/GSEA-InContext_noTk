@@ -10,9 +10,9 @@ from multiprocessing import Pool
 from math import ceil
 from collections import defaultdict
 from numpy.random import choice, normal
-from beta_binomial import *
+from gseapy.beta_binomial import *
 
-def enrichment_score(gene_list, correl_vector, gene_set, weighted_score_type=1, 
+def enrichment_score(gene_list, correl_vector, gene_set, weighted_score_type=1,
 					 nperm=1000, rs=np.random.RandomState(), single=False, scale=False):
 	"""This is the most important function of GSEApy. It has the same algorithm with GSEA and ssGSEA.
 
@@ -133,7 +133,7 @@ def make_background_dist(background_rnk_lists, nperm):
 	n_genes = len(background_rnk_lists[0])
 	tag_indicator = []
 	logging.debug("permutation #")
-	
+
 	for i in range(nperm):
 		logging.debug(i)
 		unseen_idx = list(range(n_genes))
@@ -200,13 +200,13 @@ def enrichment_score_incontext(rnk_list, correl_vector, gene_set, background_dis
 	# else just compute enrichment scores
 	# set axis to 1, because we have 2 dimensional array
 	axis = 1
-		
+
 	# Our GSEA is actually going to calculate the hit indexes for bg experiments
 	correl_vector = np.tile(correl_vector, (nperm+1,1))
 	gene_indicator = np.array(background_dist)
-	tag_indicator = np.append(np.array([np.in1d(gl, gene_set, assume_unique=True) for gl in gene_indicator]), 
+	tag_indicator = np.append(np.array([np.in1d(gl, gene_set, assume_unique=True) for gl in gene_indicator]),
 		[tag_indicator], axis = 0)
-	
+
 	Nhint = tag_indicator.sum(axis=axis, keepdims=True)
 	sum_correl_tag = np.sum(correl_vector*tag_indicator, axis=axis, keepdims=True)
 
@@ -214,7 +214,7 @@ def enrichment_score_incontext(rnk_list, correl_vector, gene_set, background_dis
 	Nmiss =  N - Nhint
 	norm_tag =  1.0/sum_correl_tag
 	norm_no_tag = 1.0/Nmiss
-		
+
 	RES = np.cumsum(tag_indicator * correl_vector * norm_tag - no_tag_indicator * norm_no_tag, axis=axis)
 
 	max_ES, min_ES =  RES.max(axis=axis), RES.min(axis=axis)
@@ -581,7 +581,7 @@ def gsea_compute(data, gmt, n, weighted_score_type, permutation_type,
 				| list of enriched terms
 
 	"""
-	
+
 	w = weighted_score_type
 	subsets = sorted(gmt.keys())
 	es = []
