@@ -1,6 +1,0 @@
-cython
-nose
-pytest
-numpydoc
-pyyaml
-sphinx
