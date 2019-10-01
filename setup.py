@@ -3,9 +3,7 @@ import sys, os
 from setuptools import setup
 from setuptools.command.test import test as TestCommand
 
-
-
-__version__='0.1.0'
+__version__='0.1.3'
 
 if sys.argv[-1] == 'publish':
     os.system("python setup.py sdist bdist_wheel register upload")
@@ -26,14 +24,14 @@ class PyTest(TestCommand):
         errno = pytest.main(self.test_args)
         sys.exit(errno)
 
-def readme():
-    with open('README.rst') as f:
-        return f.read()
+with open('README.md') as f:
+  long_description = f.read()
 
 setup(name='gsea_incontext_notk',
       version=__version__,
-      description='Gene Set Enrichment Analysis In Context',
-      long_description=readme(),
+      description='GSEA-InContext Gene Set Enrichment Analysis in Python',
+      long_description=long_description,
+      long_description_content_type="text/markdown",
       classifiers=[
           'Development Status :: 4 - Beta',
           'Intended Audience :: Science/Research',
@@ -48,10 +46,10 @@ setup(name='gsea_incontext_notk',
       keywords= ['Gene Ontology', 'GO','Biology', 'Enrichment',
           'Bioinformatics', 'Computational Biology',],
       url='https://github.com/CostelloLab/GSEA-InContext_noTk',
-      author='Zhuoqing Fang',
-      author_email='fangzhuoqing@sibs.ac.cn',
+      author='Rani Powers (fork originally from gsea_incontext_notk by Zhuoqing Fang)',
+      author_email='rani.powers@cuanschutz.edu',
       license='MIT',
-      packages=['gseapy'],
+      packages=['gsea_incontext_notk'],
       install_requires=[
           'numpy>=1.13.0',
           'pandas>=0.16',
@@ -64,4 +62,4 @@ setup(name='gsea_incontext_notk',
       zip_safe=False,
       download_url='https://github.com/CostelloLab/GSEA-InContext_noTk',)
 
-__author__ = 'Rani Powers (original GSEApy implementation by Zhuoqing Fang)'
+__author__ = 'Rani Powers'

@@ -140,7 +140,7 @@ def gsea_gmt_parser(gmt, min_size = 3, max_size = 1000, gene_list=None):
 
     if filsets_num == len(genesets_dict):
         logging.error("No gene sets passed throught filtering condition!!!, try new paramters again!\n" +\
-                         "Note: Gene names for gseapy is case sensitive." )
+                         "Note: Gene names for gsea_incontext_notk is case sensitive." )
         sys.exit(1)
     else:
         return genesets_filter

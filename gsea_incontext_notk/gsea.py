@@ -212,7 +212,7 @@ class GSEAbase(object):
 		res_df.sort_values(by='fdr', inplace=True)
 		res_df.drop(['RES','hits_indices'], axis=1, inplace=True)
 
-		out = os.path.join(outdir,'gseapy.{b}.{c}.report.csv'.format(b=module, c=permutation_type))
+		out = os.path.join(outdir,'gsea_incontext_notk.{b}.{c}.report.csv'.format(b=module, c=permutation_type))
 		if self.module == 'ssgsea':
 			out = out.replace(".csv",".txt")
 			with open(out, 'a') as f:
@@ -255,7 +255,7 @@ class GSEA(GSEAbase):
 		# init logger
 		mkdirs(self.outdir)
 		_gset =os.path.split(self.gene_sets)[-1].lower().rstrip(".gmt")
-		outlog = os.path.join(self.outdir,"gseapy.%s.%s.log"%(self.module, _gset))
+		outlog = os.path.join(self.outdir,"gsea_incontext_notk.%s.%s.log"%(self.module, _gset))
 		self._logger = log_init(outlog=outlog,
 								log_level=logging.INFO if self.verbose else logging.WARNING)
 
@@ -329,12 +329,12 @@ class GSEA(GSEAbase):
 															 classes=cls_vector, ascending=self.ascending,
 															 processes=self._processes, seed=self.seed)
 
-		self._logger.info("Start to generate gseapy reports, and produce figures...")
+		self._logger.info("Start to generate gsea_incontext_notk reports, and produce figures...")
 		res_zip = zip(subsets, list(gsea_results), hit_ind, rank_ES)
 		self._save_results(zipdata=res_zip, outdir=self.outdir, module=self.module,
 								   gmt=gmt, rank_metric=dat2, permutation_type=self.permutation_type)
 
-		self._logger.info("Congratulations. GSEApy run successfully................\n")
+		self._logger.info("Congratulations. gsea_incontext_notk run successfully................\n")
 		return
 
 
@@ -364,7 +364,7 @@ class Prerank(GSEAbase):
 		# init logger
 		mkdirs(self.outdir)
 		_gset =os.path.split(self.gene_sets)[-1].lower().rstrip(".gmt")
-		outlog = os.path.join(self.outdir,"gseapy.%s.%s.log"%(self.module, _gset))
+		outlog = os.path.join(self.outdir,"gsea_incontext_notk.%s.%s.log"%(self.module, _gset))
 		self._logger = log_init(outlog=outlog,
 								log_level=logging.INFO if self.verbose else logging.WARNING)
 
@@ -393,7 +393,7 @@ class Prerank(GSEAbase):
 															  pheno_pos=self.pheno_pos, pheno_neg=self.pheno_neg,
 															  classes=None, ascending=self.ascending,
 															  processes=self._processes, seed=self.seed)
-		self._logger.info("Start to generate gseapy reports, and produce figures...")
+		self._logger.info("Start to generate gsea_incontext_notk reports, and produce figures...")
 		res_zip = zip(subsets, list(gsea_results), hit_ind, rank_ES)
 		self._save_results(zipdata=res_zip, outdir=self.outdir, module=self.module,
 								   gmt=gmt, rank_metric=dat2, permutation_type="gene_sets")
@@ -430,7 +430,7 @@ class GSEA_InContext(GSEAbase):
 		# init logger
 		mkdirs(self.outdir)
 		_gset =os.path.split(self.gene_sets)[-1].lower().rstrip(".gmt")
-		outlog = os.path.join(self.outdir,"gseapy.%s.%s.log"%(self.module, _gset))
+		outlog = os.path.join(self.outdir,"gsea_incontext_notk.%s.%s.log"%(self.module, _gset))
 		self._logger = log_init(outlog=outlog,
 								log_level=logging.INFO if self.verbose else logging.WARNING)
 

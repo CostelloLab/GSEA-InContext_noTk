@@ -14,7 +14,7 @@ import argparse as ap
 __version__ = '0.9.3'
 
 def main():
-    """The Main function/pipeline for GSEApy."""
+    """The Main function/pipeline for gsea_incontext_notk."""
 
     # Parse options...
     argparser = prepare_argparser()
@@ -22,7 +22,7 @@ def main():
     subcommand = args.subcommand_name
 
     if subcommand == "gsea":
-        # compute using GSEAPY
+        # compute using gsea_incontext_notk
         from .gsea import GSEA
 
         gs = GSEA(args.data, args.gmt, args.cls, args.outdir,
@@ -82,8 +82,8 @@ def prepare_argparser():
 def add_output_option(parser):
     """output option"""
 
-    parser.add_argument("-o", "--outdir", dest="outdir", type=str, default='GSEApy_reports',
-                        metavar='', action="store", help="The GSEApy output directory. Default: the current working directory")
+    parser.add_argument("-o", "--outdir", dest="outdir", type=str, default='gsea_incontext_notk_reports',
+                        metavar='', action="store", help="The gsea_incontext_notk output directory. Default: the current working directory")
     parser.add_argument("-v", "--verbose", action="store_true", default=False, dest='verbose',
                         help="increase output verbosity, print out progress of your job", )
 
@@ -91,9 +91,9 @@ def add_output_group(parser, required=True):
     """output group"""
 
     output_group = parser.add_mutually_exclusive_group(required=required)
-    output_group.add_argument("-o", "--ofile", dest="ofile", type=str, default='GSEApy_reports',
+    output_group.add_argument("-o", "--ofile", dest="ofile", type=str, default='gsea_incontext_notk_reports',
                               help="Output file name. Mutually exclusive with --o-prefix.")
-    output_group.add_argument("--o-prefix", dest="ofile", type=str, default='GSEApy_reports',
+    output_group.add_argument("--o-prefix", dest="ofile", type=str, default='gsea_incontext_notk_reports',
                               help="Output file prefix. Mutually exclusive with -o/--ofile.")
 
 
@@ -101,7 +101,7 @@ def add_output_group(parser, required=True):
 def add_gsea_parser(subparsers):
     """Add main function 'gsea' argument parsers."""
 
-    argparser_gsea = subparsers.add_parser("gsea", help="Main GSEApy Function: run GSEApy instead of GSEA.")
+    argparser_gsea = subparsers.add_parser("gsea", help="Main gsea_incontext_notk Function: run gsea_incontext_notk instead of GSEA.")
 
     # group for input files
     group_input = argparser_gsea.add_argument_group("Input files arguments")
@@ -147,7 +147,7 @@ def add_gsea_parser(subparsers):
 def add_prerank_parser(subparsers):
     """Add function 'prerank' argument parsers."""
 
-    argparser_prerank = subparsers.add_parser("prerank", help="Run GSEApy Prerank tool on preranked gene list.")
+    argparser_prerank = subparsers.add_parser("prerank", help="Run gsea_incontext_notk Prerank tool on preranked gene list.")
 
     # group for input files
     prerank_input = argparser_prerank.add_argument_group("Input files arguments")

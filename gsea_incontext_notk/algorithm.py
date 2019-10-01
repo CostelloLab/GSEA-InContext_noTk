@@ -14,7 +14,7 @@ from gsea_incontext_notk.beta_binomial import *
 
 def enrichment_score(gene_list, correl_vector, gene_set, weighted_score_type=1,
 					 nperm=1000, rs=np.random.RandomState(), single=False, scale=False):
-	"""This is the most important function of GSEApy. It has the same algorithm with GSEA and ssGSEA.
+	"""This is the most important function of gsea_incontext_notk. It has the same algorithm with GSEA and ssGSEA.
 
 	:param gene_list: The ordered gene list gene_name_list, rank_metric.index.values
 	:param gene_set: Gene_sets in gmt file, used gsea_gmt_parser to get gene_set
