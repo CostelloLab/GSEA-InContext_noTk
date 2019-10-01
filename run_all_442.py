@@ -1,4 +1,4 @@
-import gseapy
+import gsea_incontext_notk
 import os
 import numpy as np
 from numpy.random import choice
@@ -12,7 +12,7 @@ rnks = [r for r in rnks if r.startswith('GSE') and r.endswith('.rnk')]
 for rnk in rnks:
 
 	# Run GSEA preranked - Hallmarks
-	prerank_results = gseapy.prerank(
+	prerank_results = gsea_incontext_notk.prerank(
 		rnk='data/rnk_lists/' + rnk,
 		gene_sets='data/gene_sets/hallmarks.gmt', 
 		outdir='out/Prerank_Hallmarks/' + rnk[:-4], 
@@ -23,7 +23,7 @@ for rnk in rnks:
 	
 
 	# Run GSEA-InContext - Kegg
-	gseapen_results = gseapy.incontext(
+	gseapen_results = gsea_incontext_notk.incontext(
 		rnk='data/rnk_lists/' + rnk,
 		gene_sets='data/gene_sets/hallmarks.gmt', 
 		background_rnks='data/bg_rnk_lists/all_442_lists_permuted_x100.csv', 
@@ -34,7 +34,7 @@ for rnk in rnks:
 	)
 
 	# Run GSEA preranked - Kegg
-	prerank_results = gseapy.prerank(
+	prerank_results = gsea_incontext_notk.prerank(
 		rnk='data/rnk_lists/' + rnk,
 		gene_sets='data/gene_sets/c2.cp.kegg.v6.0.symbols.gmt', 
 		outdir='out/Prerank_KEGG/' + rnk[:-4], 
@@ -45,7 +45,7 @@ for rnk in rnks:
 	
 
 	# Run GSEA-InContext - Kegg
-	gseapen_results = gseapy.incontext(
+	gseapen_results = gsea_incontext_notk.incontext(
 		rnk='data/rnk_lists/' + rnk,
 		gene_sets='data/gene_sets/c2.cp.kegg.v6.0.symbols.gmt', 
 		background_rnks='data/bg_rnk_lists/all_442_lists_permuted_x100.csv', 
